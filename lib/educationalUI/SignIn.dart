@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:learning/atomicUI/AppButton.dart';
 import 'package:learning/atomicUI/AppEmailPassword.dart';
-import 'package:learning/atomicUI/AppFormTextField.dart';
 import 'package:learning/atomicUI/AppHeader.dart';
 import 'package:learning/atomicUI/AppScaffold.dart';
 

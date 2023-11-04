@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:learning/atomicUI/AppPasswordFormField.dart';
 import 'package:learning/util/Validations.dart';
 
-import 'AppFormTextField.dart';
+import 'AppTextFormField.dart';
 
 Widget AppEmailField({required TextEditingController emailController}){
   return AppFormTextField(
@@ -19,11 +20,10 @@ Widget AppEmailField({required TextEditingController emailController}){
 }
 
 Widget AppPasswordField({required TextEditingController passwordController, String titleString = "Set Password"}){
-  return AppFormTextField(
+  return AppPasswordTextField(
       title: titleString ,
       controller: passwordController,
       hintText: "6+ Characters, 1 Capital letter",
-      isPassword: true,
       validator: (value) {
         if (value!.isEmpty) {
           return "Enter password";

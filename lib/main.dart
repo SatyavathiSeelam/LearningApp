@@ -3,6 +3,7 @@ import 'package:learning/educationalUI/CreateAccount.dart';
 import 'package:learning/educationalUI/ForgotPassword.dart';
 import 'package:learning/educationalUI/ResetPassword.dart';
 import 'package:learning/educationalUI/SignIn.dart';
+import 'package:learning/ui/ApiList.dart';
 import 'package:learning/ui/StateMgmntTextField.dart';
 
 void main() {
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         "/sign_in": (context)=> const SignIn(),
         "/forgot_password": (context)=> const ForgotPassword(),
         "/reset_password": (context)=> const ResetPassword(),
+        "/api_list": (context)=> const ApiList(),
       },
     );
   }

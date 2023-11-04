@@ -1,36 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class AppFormTextField extends StatelessWidget {
+class AppPasswordTextField extends StatefulWidget {
   String title;
   TextEditingController controller;
   String hintText;
   final List<TextInputFormatter>? inputFormatters;
   final String? Function(String?)? validator;
-  void Function()? onPressed;
-  bool isPassword;
-  bool isDataVisible;
-  Icon? icon;
 
-  AppFormTextField(
+  AppPasswordTextField(
       {required this.title,
       required this.controller,
       required this.hintText,
       required this.validator,
       this.inputFormatters,
-      this.isPassword = false,
-      this.onPressed = null,
-      this.icon = null,
-        this.isDataVisible = false,
       super.key});
 
+  @override
+  State<AppPasswordTextField> createState() => _AppPasswordTextFieldState();
+}
+
+class _AppPasswordTextFieldState extends State<AppPasswordTextField> {
+  bool isDataVisible =false;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          title,
+          widget.title,
           style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 14,
@@ -38,20 +36,24 @@ class AppFormTextField extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         TextFormField(
-          controller: controller,
+          controller: widget.controller,
           decoration: InputDecoration(
-            hintText: hintText,
-            suffixIcon: isPassword ? IconButton(
-              onPressed: onPressed,
-              icon: icon!,
-            ): null,
+            hintText: widget.hintText,
+            suffixIcon: IconButton(
+              onPressed: (){
+                isDataVisible=!isDataVisible;
+              },
+              icon: isDataVisible
+                  ? const Icon(Icons.visibility_off)
+                  : const Icon(Icons.visibility),
+            ),
             hintStyle: const TextStyle(fontSize: 14, color: Color(0xffaaaaaa)),
             border: OutlineInputBorder(
                 borderSide: const BorderSide(color: Color(0xffaaaaaa)),
                 borderRadius: BorderRadius.circular(8)),
           ),
-          validator: validator,
-          inputFormatters: inputFormatters,
+          validator: widget.validator,
+          inputFormatters: widget.inputFormatters,
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           obscureText: !isDataVisible,
         ),

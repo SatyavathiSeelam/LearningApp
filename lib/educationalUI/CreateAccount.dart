@@ -3,9 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:learning/atomicUI/AppButton.dart';
 import 'package:learning/atomicUI/AppEmailPassword.dart';
-import 'package:learning/atomicUI/AppFormTextField.dart';
+import 'package:learning/atomicUI/AppTextFormField.dart';
 import 'package:learning/atomicUI/AppHeader.dart';
-import 'package:learning/atomicUI/AppPasswordField.dart';
 import 'package:learning/atomicUI/AppScaffold.dart';
 import 'package:learning/atomicUI/AppDropDown.dart';
 import 'package:learning/util/Validations.dart';
@@ -101,16 +100,8 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     });
                   }),
               const SizedBox(height: 24),
-              AppPasswordFormField(
-                  controller: passwordController,
-                  title: "Set Password",
-                  hintText: "6+ Characters, 1 Capital letter",
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Enter password";
-                    }
-                    return null;
-                  }),
+             AppPasswordField(passwordController: passwordController, titleString: "Set Password",),
+
               const SizedBox(height: 24),
               AppButton(
                   title: "Create Account",
