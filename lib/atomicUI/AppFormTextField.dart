@@ -7,7 +7,10 @@ class AppFormTextField extends StatelessWidget {
   String hintText;
   final List<TextInputFormatter>? inputFormatters;
   final String? Function(String?)? validator;
-  bool obscureText;
+  void Function()? onPressed;
+  bool isPassword;
+  bool isDataVisible;
+  Icon? icon;
 
   AppFormTextField(
       {required this.title,
@@ -15,7 +18,10 @@ class AppFormTextField extends StatelessWidget {
       required this.hintText,
       required this.validator,
       this.inputFormatters,
-      this.obscureText = false,
+      this.isPassword = false,
+      this.onPressed = null,
+      this.icon = null,
+        this.isDataVisible = false,
       super.key});
 
   @override
@@ -35,6 +41,10 @@ class AppFormTextField extends StatelessWidget {
           controller: controller,
           decoration: InputDecoration(
             hintText: hintText,
+            suffixIcon: isPassword ? IconButton(
+              onPressed: onPressed,
+              icon: icon!,
+            ): null,
             hintStyle: const TextStyle(fontSize: 14, color: Color(0xffaaaaaa)),
             border: OutlineInputBorder(
                 borderSide: const BorderSide(color: Color(0xffaaaaaa)),
@@ -43,7 +53,7 @@ class AppFormTextField extends StatelessWidget {
           validator: validator,
           inputFormatters: inputFormatters,
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-          obscureText: obscureText,
+          obscureText: !isDataVisible,
         ),
       ],
     );

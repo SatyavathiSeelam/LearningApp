@@ -23,7 +23,7 @@ Widget AppPasswordField({required TextEditingController passwordController, Stri
       title: titleString ,
       controller: passwordController,
       hintText: "6+ Characters, 1 Capital letter",
-      obscureText: true,
+      isPassword: true,
       validator: (value) {
         if (value!.isEmpty) {
           return "Enter password";

@@ -4,7 +4,6 @@ class AppButton extends StatelessWidget {
   String title;
   void Function() onPressed;
 
-
   AppButton({required this.title, required this.onPressed, super.key});
 
   @override
