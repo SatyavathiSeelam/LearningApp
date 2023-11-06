@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:learning/atomicUI/AppScaffold.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:learning/models/UsersResponse.dart';
 
 class ApiList extends StatefulWidget {
   const ApiList({super.key});
@@ -28,7 +28,7 @@ class ApiListPage extends StatefulWidget {
 }
 
 class _ApiListPageState extends State<ApiListPage> {
-  List<dynamic> usersResponse = [];
+  List<Data> usersResponse = [];
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +59,14 @@ class _ApiListPageState extends State<ApiListPage> {
                 child: ListView.builder(
                   itemCount: usersResponse.length,
                   itemBuilder: (context, index) {
-                    dynamic user = usersResponse[index];
-                    String userName = user["first_name"] + user["last_name"];
+                    Data user = usersResponse[index];
+                    String userName = user.firstName! + user.lastName!;
                     return GestureDetector(
                       child: ListCard(
-                          id: user["id"],
-                          imageUrl: user["avatar"],
+                          id: user.id,
+                          imageUrl: user.avatar,
                           name: userName,
-                          email: user["email"]),
+                          email: user.email!),
                       onTap: () {
                         Fluttertoast.showToast(
                             msg: "Item at $index clicked with name $userName");
@@ -88,10 +88,10 @@ class _ApiListPageState extends State<ApiListPage> {
     parameters["per_page"] = 10;
     final dio = Dio();
     final response =
-    await dio.get(baseUrl + apiEndpoint, queryParameters: parameters);
-    Map<String, dynamic> completeResponse = response.data;
+        await dio.get(baseUrl + apiEndpoint, queryParameters: parameters);
+    UsersResponse completeResponse = UsersResponse.fromJson(response.data);
     setState(() {
-      usersResponse = completeResponse["data"];
+      usersResponse = completeResponse.data ?? [];
     });
   }
 

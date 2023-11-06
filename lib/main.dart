@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/create_account",
+      initialRoute: "/api_list",
       routes: {
         "/state_mgmnt_textfield": (context) => const StateMgmntTextField(),
         "/create_account": (context)=> const CreateAccount(),
